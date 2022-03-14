@@ -4,7 +4,7 @@
 
 ## 0. about LLVM
 
-><img src="/home/taehoon/.config/Typora/typora-user-images/image-20220311190724531.png" alt="image-20220311190724531" style="zoom:67%;" />
+><img src="https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220312114253701.png?token=ACR5TXY5BGY53N2V3Q5XIIDCF363U" alt="image-20220311190724531" style="zoom:67%;" />
 >
 >[컴파일러](https://namu.wiki/w/컴파일러)는 프론트엔드-미들엔드-백엔드의 단계로 구성되어 있다. 보통 이 세 단계는 하나의 프로그램으로 일괄 처리되는데, 이럴 경우 '언어의 종류 x 아키텍처의 종류'만큼 복수의 컴파일러가 필요하게 된다. 이러한 컴파일러 구조는 재사용성을 떨어뜨린다는 문제가 있다. 
 >
@@ -32,7 +32,7 @@
 
 - LVM의 API를 사용하여 이렇게 컴파일 된 IR 코드를 컴파일러 프로그램에서 (수정할 수 있도록) 로드 합니다.
 
-
+![image-20220314164601303](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220311190724531.png?token=ACR5TX4GGPLEVN5RU7DH3QTCF364U)
 
 ###  1.1 clang
 
@@ -170,9 +170,9 @@ clang++ ReadIR.cpp -o ReadIR $(llvm-config --cxxflags --ldflags --system-libs --
 >• 각 클래스들의 Iterator또는 다른 메소드들을 사용하여 위 계층구조를 접근 할 수 있습니다.
 >• Step 2에서는 Step 1에서 읽은 IR 코드의 함수와 명령어들을 출력합니다. 출력을 하기 위해서 llvm::raw_os_ostream 인스턴스를 사용합니다.
 >
->![image-20220312114253701](/home/taehoon/.config/Typora/typora-user-images/image-20220312114253701.png)
+>![image-20220312114253701](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314105259876.png?token=ACR5TXYSSN244FBIGQUF5TLCF365U)
 
-![image-20220314105259876](/home/taehoon/.config/Typora/typora-user-images/image-20220314105259876.png)
+![image-20220314105259876](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314164601303.png?token=ACR5TX5EVDWON4SG4IOCIXDCF366U)
 
 ### 2.2 printinst.cpp
 
@@ -289,15 +289,15 @@ BBIter )
 >이전 슬라이드처럼 llvm::Instruction의 멤버 함수 isBinaryOp()를 사용하여 이를 확인 할 수 있습니다.
 >• 하지만 Add 명령어는 BinaryOpeartor의 Opcode로만 나타내어지기 때문에 (Add만을 위한 특별한 클래스가 없고, Sub, Mul등과 같이 BinaryOperator로 표현됨) 이 방법으로 해당 명령어가 Add 명령어인지는 확신 할 수 없습니다
 >
->![image-20220314111154342](/home/taehoon/.config/Typora/typora-user-images/image-20220314111154342.png)
+>![image-20220314111154342](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314112131667.png?token=ACR5TXY5JOHRUFISK7DG7UTCF367A)
 
 #### 3.2 
 
 >- llvm::Instruction의 getOpcode() 메소드를 사용하여 Opcode를 직접 얻어서 현재 명령어가 어떤 명령어인지 확인 할수 있습니다.
 >
->![image-20220314111253806](/home/taehoon/.config/Typora/typora-user-images/image-20220314111253806.png)
+>![image-20220314111253806](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314125011595.png?token=ACR5TX7QS7ELFYXVLWLRISTCF367K)
 
-![image-20220314111942876](/home/taehoon/.config/Typora/typora-user-images/image-20220314111942876.png)
+![image-20220314111942876](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314111154342.png?token=ACR5TX5QMRBOETPMPH5TDS3CF367W)
 
 
 
@@ -306,7 +306,7 @@ BBIter )
 >• -O3 옵션을 적용하면, Loop Unrolling과 같은 최적화가 적용되므로, 적용 전 후의 ADD 명령어 수가 다릅니다.
 >• 다른 종류의 명령어들 또한 같은 방법으로 카운팅 할 수 있습니다.
 
-![image-20220314112131667](/home/taehoon/.config/Typora/typora-user-images/image-20220314112131667.png)
+![image-20220314112131667](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314111942876.png?token=ACR5TX2US7CMNW5RDDPCPEDCF37AC)
 
 
 
@@ -321,7 +321,7 @@ if( Inst->getOpcode() == llvm::Instruction::Mul ) { total_mul_inst++; }
 if( Inst->getOpcode() == llvm::Instruction::SDiv ) { total_div_inst++; }
 ```
 
-![image-20220314125011595](/home/taehoon/.config/Typora/typora-user-images/image-20220314125011595.png)
+![image-20220314125011595](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314143900403.png?token=ACR5TXZNBU5HA52H7POZPJLCF37AM)
 
 – Exercise 2: 어떤 함수가 몇 번씩 호출되었는지 정적으로 카운팅 합니다.
 (Hint: llvm::CallInst 에서, getCalledFunction()을 통해 호출되는 함수를 접근 할 수 있습니다.)
@@ -348,7 +348,7 @@ map<StringRef,int>::iterator itr;
 
 ```
 
-![image-20220314143900403](/home/taehoon/.config/Typora/typora-user-images/image-20220314143900403.png)
+![image-20220314143900403](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314111253806.png?token=ACR5TX4UU7F7GAMH7SOMI5LCF37AY)
 
 
 
@@ -370,7 +370,7 @@ map<StringRef,int>::iterator itr;
 • 일반적으로 LLVM은 아래와 같이 수행할 명령어의 Operand들을 Create 메소드의 인자로 요구합니다. Operand에는
 각 명령어 별로 요구하는 것에 따라 Value, Type 등이 될 수 있습니다.
 
-![image-20220314150507101](/home/taehoon/.config/Typora/typora-user-images/image-20220314150507101.png)
+![image-20220314150507101](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314152138579.png?token=ACR5TX6NC23Z5XYNJTNETTTCF37BC)
 
 •또한 결과 값을 가지는 명령어 (binary operator, non-void return function call 등) 또한 Instruction 객체(인스턴스)를 다른 Isntruction의 Operand로 사용함으로써 그 결과 값을 다른 명령어의 Operand로 사용할 수 있습니다.
 (llvm::Instruction 클래스는 llvm::Value 클래스의 자식 클래스입니다.)
@@ -380,22 +380,22 @@ map<StringRef,int>::iterator itr;
 •InsertInst는 타겟 어플리케이션 내 ADD 명령어가 있다면 바로 그 앞에 1 + 1연산을 추가합니다.
 (즉 ADD 1, 1의 명령어를 삽입합니다)
 
-![image-20220314150825507](/home/taehoon/.config/Typora/typora-user-images/image-20220314150825507.png)
+![image-20220314150825507](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314152210204.png?token=ACR5TX3A4ATDPR4RS4YPRVTCF37BO)
 
 
 
 • 타겟 어플리케이션과 작성한 프로그램을 각각 컴파일하고, 수행 후 원본과 처리 후 파일을 비교합니다.
 
-![image-20220314152138579](/home/taehoon/.config/Typora/typora-user-images/image-20220314152138579.png)
+![image-20220314152138579](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314150507101.png?token=ACR5TX2ZLRKWD3CRB3JYPR3CF37B2)
 
 
 
-![image-20220314152108650](/home/taehoon/.config/Typora/typora-user-images/image-20220314152108650.png)
+![image-20220314152108650](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314152108650.png?token=ACR5TX5AUKXHOGACXICZGU3CF37CG)
 
 • IR 레벨에서 명령어를 추가한 타겟 어플리케이션을 바이너리로 컴파일하고 실행합니다.
 (IR에 오류가 있다면 바이너리로 컴파일 되지 않습니다)
 
-![image-20220314152210204](/home/taehoon/.config/Typora/typora-user-images/image-20220314152210204.png)
+![image-20220314152210204](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314150825507.png?token=ACR5TX77MW6P3IC46YKGNPLCF37CS)
 
 
 
@@ -423,32 +423,32 @@ bitcode로 포맷을 변환하면 확인 할 수 있습니다
 
 #### 4.2.1 ADD 명령어 이전에 SUB 명령어가 수행
 
-![image-20220314152817226](/home/taehoon/.config/Typora/typora-user-images/image-20220314152817226.png)
+![image-20220314152817226](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314153409265.png?token=ACR5TXYPGNBJGZ3DU2RDPWDCF37C4)
 
 
 
 #### 4.2.2 Sub 명령어가 Add 명령어가 사용되는 곳에 대신하여 사용
 
-![image-20220314152905959](/home/taehoon/.config/Typora/typora-user-images/image-20220314152905959.png)
+![image-20220314152905959](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314153517297.png?token=ACR5TXY6PKVNBGGD7MH3643CF37DI)
 
 #### 4.2.3 ADD 명령어를 삭제합니다
 
 > 단, 현재 BBIter가 삭제할 명령어를 가리키고 있기 때문에, loop 내에서 삭제하면 오류
 > 가 발생합니다. loop 밖에서 삭제해야 합니다.
 
-![image-20220314152948153](/home/taehoon/.config/Typora/typora-user-images/image-20220314152948153.png)
+![image-20220314152948153](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314153332510.png?token=ACR5TX7ZSD2JQAJJVINAFVDCF37DS)
 
 #### 4.2.4 컴파일
 
 • 타겟 어플리케이션과 작성한 프로그램을 각각 컴파일하고, 수행 후 원본과 처리 후 파일을 비교합니다.
 
-![image-20220314153332510](/home/taehoon/.config/Typora/typora-user-images/image-20220314153332510.png)
+![image-20220314153332510](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314153812045.png?token=ACR5TX43SN2ZBGVUHHI5D3DCF37D6)
 
-![image-20220314153409265](/home/taehoon/.config/Typora/typora-user-images/image-20220314153409265.png)
+![image-20220314153409265](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314152948153.png?token=ACR5TX5HBJ7CJH3FMCQEQ43CF37EK)
 
 • IR 레벨에서 명령어를 추가한 타겟 어플리케이션을 바이너리로 컴파일하고, 실행합니다.
 
-![image-20220314153517297](/home/taehoon/.config/Typora/typora-user-images/image-20220314153517297.png)
+![image-20220314153517297](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314154817838.png?token=ACR5TX57CFNNIROLEECZ5X3CF37EW)
 
 
 
@@ -458,7 +458,7 @@ bitcode로 포맷을 변환하면 확인 할 수 있습니다
 
 – Exercise 1: 앞서의 Step 4에서 (2)의 코드를 삭제한 이후 ((3)은 수행), 어떤 문제가 발생하는지 확인합니다.
 
-![image-20220314153812045](/home/taehoon/.config/Typora/typora-user-images/image-20220314153812045.png)
+![image-20220314153812045](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314152905959.png?token=ACR5TX3P4SFULK7K3BEDKODCF37FC)
 
 
 
@@ -466,13 +466,13 @@ bitcode로 포맷을 변환하면 확인 할 수 있습니다
 (Hint: 연산 순서상, A + B + C는 (A + B) + C와 같은데, 이것은 A + B 명령어의 결과 값이 ADD 명령어의
 Operand로 들어가는 것과 같습니다.)
 
-![image-20220314154852405](/home/taehoon/.config/Typora/typora-user-images/image-20220314154852405.png)
+![image-20220314154852405](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314154852405.png?token=ACR5TX6TCOQ7NF7KLQ4ZE3DCF37FO)
 
-![image-20220314154817838](/home/taehoon/.config/Typora/typora-user-images/image-20220314154817838.png)
+![image-20220314154817838](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314152817226.png?token=ACR5TX2UHGWSUQWKXZJCMK3CF37F4)
 
-![image-20220314154616507](/home/taehoon/.config/Typora/typora-user-images/image-20220314154616507.png)
+![image-20220314154616507](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314154830909.png?token=ACR5TX3MXESEVGUVGG2VJ33CF37GG)
 
-![image-20220314154830909](/home/taehoon/.config/Typora/typora-user-images/image-20220314154830909.png)
+![image-20220314154830909](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314154616507.png?token=ACR5TX5VPACMZUY677IO5RDCF37GS)
 
 
 
@@ -484,9 +484,11 @@ Operand로 들어가는 것과 같습니다.)
 >
 >• 일반적인 산술 연산 명령어와 다르게, 메모리 명령어 (load/store)의 종속 관계는 컴파일러 입장에서 대부분 알기 어렵습니다. 
 >
->예를 들어 주소 X에서 값을 읽은 명령어와(load) 주소 Y에 값을 저장하는 명령어(store)가 있다고 할 때, 주소
->X와 주소 Y가 같거나, 다르다는 보장이 없는 이상 두 명령어간 순서는 두 명령어간 def-use chain에서 종속 관계가 없
->다고 하더라도 쉽게 바뀔 수 없습니다.
+>예를 들어 ,
+>
+>주소 X에서 값을 읽은 명령어와(load) 주소 Y에 값을 저장하는 명령어(store)가 있다고 할 때, 
+>
+>주소X와 주소 Y가 같거나, 다르다는 보장이 없는 이상 두 명령어간 순서는 두 명령어간 def-use chain에서 종속 관계가 없다고 하더라도 쉽게 바뀔 수 없습니다.
 >
 >•Step 5에서는 Store 명령어를 Store 명령어가 있는 BasicBlock 가장 마지막 부분으로 위치를 옮기는 작업을 수행합니다.
 >
@@ -494,3 +496,40 @@ Operand로 들어가는 것과 같습니다.)
 >를 발생시키지 않습니다.
 >
 >
+
+• 프로그램 내의 Store Instruction을 식별하도록 코드를 작성합니다.
+• LLVM 6에서, Store Instruction은 llvm::StoreInst 자료형으로 표현됩니다.
+
+![image-20220314162107200](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314162753575.png?token=ACR5TX4SKKAQJTFQRTRMWXTCF37G4)
+
+• Basic Block 내의 마지막 명령어를 탐색하는 코드를 추가합니다.
+• LLVM IR에서 Basic Block의 마지막 명령어는 반드시 TerminatorInst 이여야 합니다. (Return, Br 등이여야 함)
+
+•Store 명령어들을 Basic Block 내의 마지막 명령어 이전으로 위치를 이동합니다,
+
+![image-20220314162155070](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314162611759.png?token=ACR5TXYH2EYEWDY7SOZY66DCF37HI)
+
+• 타겟 어플리케이션과 작성한 프로그램을 각각 컴파일하고, 수행 후 원본과 처리 후 파일을 비교합니다.
+
+
+
+![image-20220314162611759](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314162155070.png?token=ACR5TX5UZU7ANHQQQMAN2YDCF37HU)
+
+• 원본과 처리 후 실행 결과를 비교합니다.
+
+![image-20220314162753575](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314162107200.png?token=ACR5TX74JCSVIVKJMVE3ITTCF37IA)
+
+
+
+• Exercise
+– Exercise 1: Store 명령어가 접근하는 주소를 바탕으로, 불필요한 Load를 삭제합니다.
+(Load와 Store 사이에 다른 메모리 접근 명령어가 없고, 주소가 같은 것을 완전히 보장 할 수 경우에만 Load 명령
+어의 결과 값 대신 Store에 저장하는 값 (레지스터에 저장된)을 사용 할 수 있습니다.)
+
+
+
+
+
+## Optional Project 1
+
+>![image-20220314170732124](https://raw.githubusercontent.com/ted6345/LLVM_Turorial/main/img/image-20220314170732124.png?token=ACR5TX7CAT4AWP2CIPRBUXDCF37IM)
